@@ -42,7 +42,7 @@ export function Footer() {
               </span>
               <span className="flex flex-col leading-none">
                 <span className="font-display text-2xl font-bold text-cream">Feeding Life</span>
-                <span className="font-ui text-[10px] uppercase tracking-[0.3em] text-cream/50">
+                <span className="font-ui text-[10px] uppercase tracking-[0.3em] text-cream/65">
                   Coffee Shop
                 </span>
               </span>
@@ -118,10 +118,10 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-7 sm:flex-row">
-          <p className="font-ui text-xs text-cream/45">
+          <p className="font-ui text-xs text-cream/65">
             © {new Date().getFullYear()} {site.name}. Todos los derechos reservados.
           </p>
-          <p className="font-ui text-xs text-cream/45">
+          <p className="font-ui text-xs text-cream/65">
             Hecho con granos, código y cariño.
           </p>
         </div>

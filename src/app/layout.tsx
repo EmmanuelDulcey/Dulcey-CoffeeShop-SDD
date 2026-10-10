@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { site } from "@/lib/site";
 import { OrderProvider } from "@/components/site/OrderContext";
 import { CartDrawer } from "@/components/site/CartDrawer";
 
@@ -35,14 +36,18 @@ const poppins = localFont({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://feeding-life-coffee-shop.vercel.app";
+
+const title = "Feeding Life Coffee Shop — Café de origen local";
+const description =
+  "Café de especialidad de origen local. Catálogo de cafés, historia de origen y pedidos. Tostado artesanal, frescura garantizada.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ??
-      "https://feeding-life-coffee-shop.vercel.app"
-  ),
-  title: "Feeding Life Coffee Shop — Café de origen local",
-  description:
-    "Café de especialidad de origen local. Catálogo de cafés, historia de origen y pedidos. Tostado artesanal, frescura garantizada.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   keywords: [
     "café de especialidad",
     "café de origen",
@@ -50,14 +55,66 @@ export const metadata: Metadata = {
     "tueste artesanal",
     "Feeding Life",
   ],
+  applicationName: site.name,
+  authors: [{ name: site.name }],
+  alternates: { canonical: "/" },
   icons: { icon: "/logo.png", apple: "/logo.png" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Feeding Life Coffee Shop — Café de origen local",
+    title,
     description:
       "Café de especialidad de origen local. Catálogo, origen y pedidos.",
+    url: "/",
+    siteName: site.name,
+    locale: "es_CO",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: `${site.name} — logo`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description:
+      "Café de especialidad de origen local. Catálogo, origen y pedidos.",
     images: ["/logo.png"],
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  name: site.name,
+  description: site.description,
+  url: siteUrl,
+  image: `${siteUrl}/logo.png`,
+  logo: `${siteUrl}/logo.png`,
+  telephone: `+${site.whatsappNumber}`,
+  email: site.email,
+  priceRange: "$$",
+  servesCuisine: "Café de especialidad",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address,
+    addressCountry: "CO",
+  },
+  openingHours: site.hours,
+  sameAs: [site.socials.instagram, site.socials.tiktok, site.socials.facebook],
 };
 
 export const viewport: Viewport = {
@@ -75,6 +132,10 @@ export default function RootLayout({
       className={`${shabby.variable} ${nunito.variable} ${poppins.variable}`}
     >
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <OrderProvider>
           {children}
           <CartDrawer />

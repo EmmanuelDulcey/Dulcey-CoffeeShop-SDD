@@ -85,7 +85,7 @@ export function Hero() {
                   <dt className="font-display text-4xl font-bold text-gold">
                     {s.value}
                   </dt>
-                  <dd className="font-ui text-xs uppercase tracking-[0.15em] text-cream/55">
+                  <dd className="font-ui text-xs uppercase tracking-[0.15em] text-cream/70">
                     {s.label}
                   </dd>
                 </div>
@@ -110,7 +110,10 @@ export function Hero() {
             </div>
 
             {/* script decorative accent */}
-            <span className="script pointer-events-none absolute -left-6 top-8 -rotate-6 text-4xl text-gold drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]">
+            <span
+              aria-hidden
+              className="script pointer-events-none absolute -left-6 top-8 -rotate-6 text-4xl text-gold drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
+            >
               del cafetal
             </span>
 
@@ -140,7 +143,7 @@ export function Hero() {
               <IconBean className="h-5 w-5 text-brand-400" />
               <div className="leading-tight">
                 <p className="font-ui text-sm font-bold text-cream">Tostado hoy</p>
-                <p className="font-ui text-[10px] uppercase tracking-wider text-cream/60">
+                <p className="font-ui text-[10px] uppercase tracking-wider text-cream/70">
                   Frescura real
                 </p>
               </div>

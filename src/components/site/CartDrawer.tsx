@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useOrder } from "./OrderContext";
 import { currency, site } from "@/lib/site";
@@ -14,16 +14,47 @@ import {
 
 export function CartDrawer() {
   const { items, isOpen, close, setQty, remove, total, count, clear } = useOrder();
+  const panelRef = useRef<HTMLElement | null>(null);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
-    if (isOpen) {
-      document.addEventListener("keydown", onKey);
-      document.body.style.overflow = "hidden";
-    }
+    if (!isOpen) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      const panel = panelRef.current;
+      if (!panel) return;
+      const focusables = Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => el.offsetParent !== null);
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      previouslyFocused?.focus?.();
     };
   }, [isOpen, close]);
 
@@ -51,9 +82,11 @@ export function CartDrawer() {
         }`}
       />
       <aside
+        ref={panelRef}
         role="dialog"
         aria-label="Tu pedido"
         aria-modal="true"
+        inert={!isOpen}
         className={`fixed right-0 top-0 z-[80] flex h-full w-full max-w-md flex-col bg-cream shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
@@ -73,6 +106,7 @@ export function CartDrawer() {
             </div>
           </div>
           <button
+            ref={closeRef}
             onClick={close}
             aria-label="Cerrar pedido"
             className="grid h-10 w-10 place-items-center rounded-full text-coffee-900 transition hover:bg-coffee-900/10"
@@ -129,7 +163,7 @@ export function CartDrawer() {
                       <button
                         onClick={() => remove(item.id)}
                         aria-label={`Quitar ${item.name}`}
-                        className="font-ui text-xs text-coffee-400 transition hover:text-coffee-900"
+                        className="font-ui text-xs text-coffee-500 transition hover:text-coffee-900"
                       >
                         Quitar
                       </button>

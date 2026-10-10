@@ -104,7 +104,10 @@ export function Origin() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-coffee-950/60 to-transparent" />
             </div>
-            <span className="script pointer-events-none absolute -left-4 -top-6 rotate-[-4deg] text-4xl text-gold drop-shadow-[0_6px_16px_rgba(0,0,0,0.5)]">
+            <span
+              aria-hidden
+              className="script pointer-events-none absolute -left-4 -top-6 rotate-[-4deg] text-4xl text-gold drop-shadow-[0_6px_16px_rgba(0,0,0,0.5)]"
+            >
               puro campo
             </span>
             <div className="absolute -bottom-5 left-6 rounded-2xl bg-cream px-5 py-3 shadow-xl">
@@ -123,7 +126,7 @@ export function Origin() {
                 <span className="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-caramel text-coffee-950">
                   <p.icon className="h-6 w-6" />
                 </span>
-                <p className="font-ui text-[11px] uppercase tracking-[0.2em] text-cream/50">
+                <p className="font-ui text-[11px] uppercase tracking-[0.2em] text-cream/65">
                   {p.title}
                 </p>
                 <p className="mt-1 font-display text-2xl font-bold text-gold">{p.value}</p>

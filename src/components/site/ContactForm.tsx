@@ -97,7 +97,7 @@ export function ContactForm() {
                   <IconMapPin className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="font-ui text-xs uppercase tracking-wider text-cream/50">
+                  <p className="font-ui text-xs uppercase tracking-wider text-cream/65">
                     Visítanos
                   </p>
                   <p className="font-body text-cream">{site.address}</p>
@@ -108,7 +108,7 @@ export function ContactForm() {
                   <IconClock className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="font-ui text-xs uppercase tracking-wider text-cream/50">
+                  <p className="font-ui text-xs uppercase tracking-wider text-cream/65">
                     Horario
                   </p>
                   <p className="font-body text-cream">{site.hours}</p>
@@ -119,7 +119,7 @@ export function ContactForm() {
                   <IconMail className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="font-ui text-xs uppercase tracking-wider text-cream/50">
+                  <p className="font-ui text-xs uppercase tracking-wider text-cream/65">
                     Escríbenos
                   </p>
                   <a href={`mailto:${site.email}`} className="font-body text-cream hover:text-gold">
@@ -148,6 +148,7 @@ export function ContactForm() {
         <Reveal delay={140}>
           <form
             onSubmit={onSubmit}
+            aria-busy={status === "sending"}
             className="rounded-3xl border border-cream/10 bg-cream p-6 text-coffee-900 shadow-2xl sm:p-9"
           >
             {count > 0 && (
@@ -180,10 +181,14 @@ export function ContactForm() {
                 required
               />
               <div className="sm:col-span-2">
-                <label className="mb-1.5 block font-ui text-xs font-bold uppercase tracking-wider text-coffee-700">
+                <label
+                  htmlFor="field-topic"
+                  className="mb-1.5 block font-ui text-xs font-bold uppercase tracking-wider text-coffee-700"
+                >
                   Motivo
                 </label>
                 <select
+                  id="field-topic"
                   name="topic"
                   className="w-full rounded-2xl border border-coffee-900/15 bg-white px-4 py-3 font-body text-sm text-coffee-900 outline-none transition focus:border-caramel focus:ring-2 focus:ring-caramel/30"
                   defaultValue="pedido"
@@ -195,10 +200,14 @@ export function ContactForm() {
                 </select>
               </div>
               <div className="sm:col-span-2">
-                <label className="mb-1.5 block font-ui text-xs font-bold uppercase tracking-wider text-coffee-700">
+                <label
+                  htmlFor="field-message"
+                  className="mb-1.5 block font-ui text-xs font-bold uppercase tracking-wider text-coffee-700"
+                >
                   Mensaje
                 </label>
                 <textarea
+                  id="field-message"
                   name="message"
                   rows={4}
                   placeholder="Cuéntanos qué necesitas..."
@@ -224,15 +233,17 @@ export function ContactForm() {
             </button>
 
             {status === "error" && (
-              <p className="mt-3 text-center font-ui text-xs text-red-600">
+              <p role="alert" className="mt-3 text-center font-ui text-xs text-red-600">
                 Algo salió mal. Intenta de nuevo o escríbenos por WhatsApp.
               </p>
             )}
-            {status === "sent" && (
-              <p className="mt-3 text-center font-ui text-xs text-coffee-500">
-                Recibimos tu solicitud correctamente.
-              </p>
-            )}
+            <p
+              role="status"
+              aria-live="polite"
+              className="mt-3 text-center font-ui text-xs text-coffee-500"
+            >
+              {status === "sent" ? "Recibimos tu solicitud correctamente." : ""}
+            </p>
           </form>
         </Reveal>
       </div>
@@ -255,12 +266,17 @@ function Field({
   required?: boolean;
   className?: string;
 }) {
+  const id = `field-${name}`;
   return (
     <div className={className}>
-      <label className="mb-1.5 block font-ui text-xs font-bold uppercase tracking-wider text-coffee-700">
+      <label
+        htmlFor={id}
+        className="mb-1.5 block font-ui text-xs font-bold uppercase tracking-wider text-coffee-700"
+      >
         {label}
       </label>
       <input
+        id={id}
         type={type}
         name={name}
         placeholder={placeholder}

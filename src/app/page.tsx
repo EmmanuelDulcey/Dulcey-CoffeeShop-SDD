@@ -11,8 +11,11 @@ import { Footer } from "@/components/site/Footer";
 export default function Home() {
   return (
     <>
+      <a href="#contenido" className="skip-link">
+        Saltar al contenido
+      </a>
       <Navbar />
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         <Hero />
         <Marquee />
         <Catalog />

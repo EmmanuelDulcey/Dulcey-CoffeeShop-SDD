@@ -40,29 +40,40 @@ export function Catalog() {
               categoría y arma tu pedido.
             </p>
           </div>
-          <span className="rounded-full border border-coffee-900/15 px-4 py-2 font-ui text-xs font-semibold uppercase tracking-widest text-coffee-600">
+          <span
+            aria-live="polite"
+            className="rounded-full border border-coffee-900/15 px-4 py-2 font-ui text-xs font-semibold uppercase tracking-widest text-coffee-600"
+          >
             {filtered.length} productos
           </span>
         </Reveal>
 
         {/* Filters */}
-        <Reveal className="mb-10 flex flex-wrap gap-3">
-          {categories.map((cat) => {
-            const isActive = cat.id === active;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setActive(cat.id)}
-                className={`rounded-full border px-5 py-2.5 font-ui text-sm font-semibold transition ${
-                  isActive
-                    ? "border-coffee-900 bg-coffee-900 text-cream"
-                    : "border-coffee-900/15 bg-white/50 text-coffee-600 hover:border-caramel hover:text-coffee-900"
-                }`}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
+        <Reveal className="mb-10">
+          <div
+            role="group"
+            aria-label="Filtrar el catálogo por categoría"
+            className="flex flex-wrap gap-3"
+          >
+            {categories.map((cat) => {
+              const isActive = cat.id === active;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => setActive(cat.id)}
+                  className={`rounded-full border px-5 py-2.5 font-ui text-sm font-semibold transition ${
+                    isActive
+                      ? "border-coffee-900 bg-coffee-900 text-cream"
+                      : "border-coffee-900/15 bg-white/50 text-coffee-600 hover:border-caramel hover:text-coffee-900"
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
         </Reveal>
 
         {/* Grid */}
@@ -122,7 +133,7 @@ export function Catalog() {
                       <p className="font-display text-2xl font-bold text-coffee-900">
                         {currency(product.price)}
                       </p>
-                      <p className="font-ui text-[11px] uppercase tracking-wider text-coffee-400">
+                      <p className="font-ui text-[11px] uppercase tracking-wider text-coffee-500">
                         {product.unit}
                       </p>
                     </div>
