@@ -1,0 +1,37 @@
+{
+  "name": "feeding-life-coffee-shop",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.4",
+  "description": "Landing page interactiva para Feeding Life Coffee Shop — café de origen local.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@next/eslint-plugin-next": "^15.5.27",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.71.1",
+    "@typescript-eslint/parser": "^8.71.1",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.5.0",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,26 @@
+Vamos a hacer una landing page interactiva y moderna desarrollada con flujo SDD.
+
+La landing page será: Tienda de café de origen local: Catálogo de productos, sección de origen y formulario de contacto/pedidos.
+
+Brand:
+-Nombre: Feeding Life Coffee Shop
+-Fuente de texto principal: Another shabby light (La implementación debe ser con un contorno grueso, 2 o 3 pt, que sea entendible). Esta fuente es para títulos. La fuente la tienes en C:\Users\emman\OneDrive\Documents\Universidad\Diseño-de-sistemas-de-información-2026-2\Taller-DesarrolloSDD\Dulcey-CoffeeShop-SDD\Brand\Fuentes\Another shabby light .
+-Fuentes para texto normal: Nunito y Poppins, las puedes usar con criterio según el contexto y cómo mejor se vea. Están en: C:\Users\emman\OneDrive\Documents\Universidad\Diseño-de-sistemas-de-información-2026-2\Taller-DesarrolloSDD\Dulcey-CoffeeShop-SDD\Brand\Fuentes\Nunito y C:\Users\emman\OneDrive\Documents\Universidad\Diseño-de-sistemas-de-información-2026-2\Taller-DesarrolloSDD\Dulcey-CoffeeShop-SDD\Brand\Fuentes\Poppins 
+-Colores principales, codigos en RGB Hex: #00de45 y #003c25. Puedes complementar el brand de colores con base en estos dos colores y en el propósito de una Coffee Shop.
+-Logo: Ya tengo un logo hecho por mí, quiero que lo implementes como imagen principal de la marca, lo puedes encontrar en: C:\Users\emman\OneDrive\Documents\Universidad\Diseño-de-sistemas-de-información-2026-2\Taller-DesarrolloSDD\Dulcey-CoffeeShop-SDD\Brand\Logo También puedes expandir el brand con base en el logo.
+-Quiero gráficos muy modernos, diseños muy modernos y agradablemente visuales.
+
+Stack tecnológico
+-Astro o Next.js (con Tailwind CSS para los estilos), asegurando buenas prácticas de diseño responsivo.
+
+Consideraciones
+
+-Debes desplegarlo en vercel, de tal manera que me quede algo funcional al final.
+-Todo debe ser materializado con flujo SDD. De tal manera que necesito todo documentado. Puedes crear una carpeta que se llame SDD y dejar toda la documentaciín allí en formato md. De tal manera que si queremos replicar esto, con la documentación basta. 
+-Con respecto al flujo en git no te preocupes, yo manejo git, tú ayúdame a materializar. 
+
+Me gustaría que lo hicieras todo en un solo corte si es posible, porque ya tienes todas las especificaciones necesarias para hacerlo.
+
+Recuerda que estás trabajando sobre una carpeta en blanco practicamente.
+
+Go
